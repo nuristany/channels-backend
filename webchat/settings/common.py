@@ -38,14 +38,10 @@ CORS_ALLOWED_ORIGINS = [
    
 ]
 
-CSRF_TRUSTED_ORIGINS = [
-    "https://channels-backend-production.up.railway.app", 
-    "http://192.168.1.106:5173",
-    ]
+
 
 CORS_ALLOW_CREDENTIALS = True  # Allow cookies and authentication headers
 
-CSRF_TRUSTED_ORIGINS = ["http://localhost:5173", "http://192.168.1.106:5173"]
 
 ROOT_URLCONF = 'webchat.urls'
 
@@ -127,9 +123,17 @@ CHANNEL_LAYERS = {
 }
 
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "192.168.1.106", 'channels-backend-production.up.railway.app']
-CSRF_TRUSTED_ORIGINS = ["http://192.168.1.106"]
+ALLOWED_HOSTS = [
+    "localhost", "127.0.0.1", "192.168.1.106",
+    'channels-backend-production.up.railway.app'
+    ]
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://channels-backend-production.up.railway.app", 
+    "http://192.168.1.106:5173",
+    "http://192.168.1.106",
+
+    ]
 
 AUTH_USER_MODEL = 'accounts.UserAccount'
 
