@@ -64,3 +64,4 @@ class ConversationByChannelView(APIView):
         )
         serializer = ConversationSerializer(conversation)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
