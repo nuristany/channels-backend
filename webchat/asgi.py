@@ -6,7 +6,14 @@ import os
 from django.core.asgi import get_asgi_application
 from channels.routing import ProtocolTypeRouter, URLRouter
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'webchat.settings.development')
+#os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'webchat.settings.development')
+import os
+
+os.environ.setdefault(
+    'DJANGO_SETTINGS_MODULE',
+    os.getenv('DJANGO_SETTINGS_MODULE', 'webchat.settings.development')
+)
+
 
 django_asgi_app = get_asgi_application()
 
@@ -31,7 +38,14 @@ from chat.consumers import MyConsumer
 from chat.jwt_auth_middleware import JWTAuthMiddleware
 
 # Ensure Django settings are loaded
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'webchat.settings.development')
+#os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'webchat.settings.development')
+import os
+
+os.environ.setdefault(
+    'DJANGO_SETTINGS_MODULE',
+    os.getenv('DJANGO_SETTINGS_MODULE', 'webchat.settings.development')
+)
+
 
 # Get the ASGI application for HTTP requests
 django_asgi_app = get_asgi_application()
