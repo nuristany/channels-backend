@@ -123,17 +123,17 @@ CHANNEL_LAYERS = {
 }
 
 
-ALLOWED_HOSTS = [
-    "localhost", "127.0.0.1", "192.168.1.106",
-    'channels-backend-production.up.railway.app'
-    ]
-
 CSRF_TRUSTED_ORIGINS = [
     "https://channels-backend-production.up.railway.app", 
     "http://192.168.1.106:5173",
     "http://192.168.1.106",
 
     ]
+ALLOWED_HOSTS = [
+    'channels-backend-production.up.railway.app',
+    "localhost", "127.0.0.1", "192.168.1.106",
+    ]
+
 
 AUTH_USER_MODEL = 'accounts.UserAccount'
 
