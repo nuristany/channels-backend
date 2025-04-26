@@ -13,3 +13,10 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "https://your-frontend-domain.com"
 ]
+
+
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+
+SESSION_COOKIE_SAMESITE = 'Lax'
+CSRF_COOKIE_SAMESITE = 'Lax'
