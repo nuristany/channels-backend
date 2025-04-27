@@ -4,6 +4,18 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = False
 
 
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.environ.get('DATABASE_NAME'),
+        'USER': os.environ.get('DATABASE_USER'),
+        'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
+        'HOST': os.environ.get('DATABASE_HOST'),
+        'PORT': os.environ.get('DATABSE_PORT')
+    }
+}
+
 CSRF_TRUSTED_ORIGINS = [
     "https://channels-backend-production.up.railway.app",
     "https://your-frontend-domain.com"
