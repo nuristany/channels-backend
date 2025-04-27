@@ -130,11 +130,13 @@ CSRF_TRUSTED_ORIGINS = [
     "https://channels-backend-production.up.railway.app", 
     "http://192.168.1.106:5173",
     "http://192.168.1.106",
+    "http://localhost:5173",
 
     ]
 ALLOWED_HOSTS = [
     'channels-backend-production.up.railway.app',
     "localhost", "127.0.0.1", "192.168.1.106",
+    "http://localhost:5173",
     ]
 
 
