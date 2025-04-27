@@ -13,6 +13,7 @@ CSRF_TRUSTED_ORIGINS = [
 
 CORS_ALLOWED_ORIGINS = [
     "https://your-production-domain.com",
+    "http://localhost:5173",
 ]
 
 CSRF_COOKIE_SECURE = True
