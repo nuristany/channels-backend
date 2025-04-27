@@ -10,13 +10,13 @@ from .serializers import ChannelCategorySerializer, ChannelMediaSerializer, Chan
 
 class ChannelCategoryView(viewsets.ModelViewSet):
     # Use ModelViewSet instead of ViewSet for default CRUD actions
-    permission_classes = [IsAuthenticated]
+    #permission_classes = [IsAuthenticated]
     queryset = ChannelCategory.objects.all()
     serializer_class = ChannelCategorySerializer
 
 class ChannelView(viewsets.ModelViewSet):
     # Use ModelViewSet here for consistency
-    permission_classes = [IsAuthenticated]
+    #permission_classes = [IsAuthenticated]
     queryset = Channel.objects.all()
     serializer_class = ChannelSerializer
 
@@ -50,6 +50,7 @@ class CategoryMediaView(ModelViewSet):
         return CategoryMedia.objects.filter(category_id=self.kwargs['category_pk'])
 
 class MessageListView(APIView):
+    #permission_classes = [IsAuthenticated]
     def get(self, request, conversation_id):
         # Fetch all messages for a specific conversation
         messages = Message.objects.filter(conversation_id=conversation_id)
@@ -57,6 +58,7 @@ class MessageListView(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 class ConversationByChannelView(APIView):
+    #permission_classes = [IsAuthenticated]
     def get(self, request, channel_id):
         conversation, _ = Conversation.objects.get_or_create(
             channel_id=channel_id,
