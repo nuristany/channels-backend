@@ -171,19 +171,16 @@ from decouple import config
 # import urllib.parse as urlparse
 # url = urlparse.urlparse(config('DATABASE_URL'))
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': url.path[1:],  # database name without the leading '/'
-#         'USER': url.username,
-#         'PASSWORD': url.password,
-#         'HOST': url.hostname,
-#         'PORT': url.port,
-#     }
-# }
-
-import dj_database_url
-
 DATABASES = {
-    'default': dj_database_url.config(default=config('DATABASE_URL'))
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',  
+    }
 }
+
+
+# import dj_database_url
+
+# DATABASES = {
+#     'default': dj_database_url.config(default=config('DATABASE_URL'))
+# }
