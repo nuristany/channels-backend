@@ -62,7 +62,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'webchat.wsgi.application'
-
+ASGI_APPLICATION = 'webchat.asgi.application' 
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
