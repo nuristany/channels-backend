@@ -36,6 +36,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",  # Allow requests from your React app
     "http://192.168.1.106:5173",  # Allow requests from other devices on the same network
     "https://channels-backend-production.up.railway.app",
+    "https://django-chat.netlify.app",
 ]
 
 
