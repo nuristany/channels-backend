@@ -21,7 +21,7 @@ CSRF_TRUSTED_ORIGINS = [
 
 # CORS
 CORS_ALLOWED_ORIGINS = [
-    "https://your-production-domain.com",
+    "https://channels-backend-production.up.railway.app",
     "https://django-chat.netlify.app",
 ]
 
