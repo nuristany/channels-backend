@@ -1,1 +1,1 @@
-web: uvicorn webchat.asgi:application --host 0.0.0.0 --port 8080 --workers 4 --log-level debug
+web: uvicorn webchat.asgi:application --host 0.0.0.0 --port 8080 --workers 1 --log-level debug
