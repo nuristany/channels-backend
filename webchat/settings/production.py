@@ -14,6 +14,7 @@ CSRF_TRUSTED_ORIGINS = [
 CORS_ALLOWED_ORIGINS = [
     "https://your-production-domain.com",
     "http://localhost:5173",
+    "https://django-chat.netlify.app",
 ]
 
 CSRF_COOKIE_SECURE = True

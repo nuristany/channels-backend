@@ -132,6 +132,7 @@ CSRF_TRUSTED_ORIGINS = [
     "http://192.168.1.106:5173",
     "http://192.168.1.106",
     "http://localhost:5173",
+    
 
     ]
 ALLOWED_HOSTS = [
