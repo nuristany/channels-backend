@@ -1,6 +1,5 @@
 from channels.generic.websocket import JsonWebsocketConsumer
 from asgiref.sync import async_to_sync
-from .models import Conversation, Message, Channel
 from django.contrib.auth import get_user_model
 from django.conf import settings
 from accounts.serializers import UserAccountSerializers
@@ -80,6 +79,7 @@ class MyConsumer(JsonWebsocketConsumer):
             return
 
         # Get or create the conversation for the channel
+        from .models import Conversation, Message, Channel
         conversation, _ = Conversation.objects.get_or_create(
             name=f"channel-{self.channel_id}",
             channel=channel  # Link the conversation to the channel
