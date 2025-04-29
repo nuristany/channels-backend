@@ -9,17 +9,16 @@ from .serializers import ChannelCategorySerializer, ChannelMediaSerializer, Chan
  MessageSerializer, CategoryMediaSerializer, ConversationSerializer
 
 class ChannelCategoryView(viewsets.ModelViewSet):
-    # Use ModelViewSet instead of ViewSet for default CRUD actions
     permission_classes = [IsAuthenticated]
     queryset = ChannelCategory.objects.all()
     serializer_class = ChannelCategorySerializer
+   
 
 class ChannelView(viewsets.ModelViewSet):
-    # Use ModelViewSet here for consistency
     permission_classes = [IsAuthenticated]
     queryset = Channel.objects.all()
     serializer_class = ChannelSerializer
-
+    
     def get_queryset(self):
         category_id = self.request.query_params.get('category_id')
         queryset = super().get_queryset()
