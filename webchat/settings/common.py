@@ -123,6 +123,8 @@ REST_FRAMEWORK = {
     # 'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.IsAuthenticated'],  # Uncomment if needed
 }
 
+
+
 # JWT
 SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('Bearer',),
