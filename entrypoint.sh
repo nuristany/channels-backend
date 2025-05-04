@@ -1,11 +1,13 @@
 #!/bin/sh
 
+echo "🏁 ENTRYPOINT STARTED"
+
 set -e
 
-echo "Running collectstatic..."
+echo "📦 Running collectstatic..."
 python manage.py collectstatic --noinput
 
-echo "Running migrations..."
+echo "🛠 Running migrate..."
 python manage.py migrate
 
 exec "$@"
