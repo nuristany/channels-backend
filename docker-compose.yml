@@ -6,6 +6,8 @@ services:
     command: uvicorn webchat.asgi:application --host 0.0.0.0 --port 8000 --workers 4 --log-level debug --reload
     volumes:
       - .:/app
+      - static:/app/staticfiles
+      
     ports:
       - "8000:8000"
     env_file:
@@ -39,3 +41,6 @@ services:
       - redis
     environment:
       - CELERY_BROKER_URL=redis://redis:6379/0
+volumes:
+  static:
+  
