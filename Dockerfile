@@ -23,5 +23,8 @@ COPY entrypoint.sh /app/entrypoint.sh
 # Make the entrypoint script executable
 RUN chmod +x /app/entrypoint.sh
 
+# Run collectstatic to gather static files
+RUN python manage.py collectstatic --noinput
+
 ENTRYPOINT ["/app/entrypoint.sh"]
 CMD ["uvicorn", "webchat.asgi:application", "--host", "0.0.0.0", "--port", "8000", "--workers", "4", "--log-level", "debug"]
