@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import ChannelCategory, Channel, Message, Conversation, ChannelMedia, CategoryMedia
-from accounts.serializers import UserAccountSerializers
+from accounts.serializers import CustomeUserCreateSerializer
 
 class ChannelMediaSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
@@ -42,7 +42,7 @@ class ChannelSerializer(serializers.ModelSerializer):
         fields = ['id', 'name', 'category', 'media']
 
 class MessageSerializer(serializers.ModelSerializer):
-    sender = UserAccountSerializers()
+    sender = CustomeUserCreateSerializer()
 
     class Meta:
         model = Message

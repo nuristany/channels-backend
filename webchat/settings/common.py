@@ -15,6 +15,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_celery_beat',
 
     'corsheaders',
     'djoser',
@@ -131,12 +132,36 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
 }
 
+# settings.py
+PASSWORD_RESET_TIMEOUT = 60 
+
+
+
 # Channels
+# CHANNEL_LAYERS = {
+#     'default': {
+#         'BACKEND': 'channels.layers.InMemoryChannelLayer',
+#     },
+# }
+
+DJOSER = {
+    'SERIALIZERS': {
+        'user_create': 'accounts.serializers.CustomeUserCreateSerializer',  # use your full path
+    }
+}
+
+
 CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels.layers.InMemoryChannelLayer',
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("redis", 6379)],
+        },
     },
 }
+
+CELERY_BROKER_URL = 'redis://redis:6379/1'
+
 
 # Security settings
 CSRF_COOKIE_SECURE = True
@@ -144,3 +169,22 @@ SESSION_COOKIE_SECURE = True
 SESSION_COOKIE_SAMESITE = 'Lax'
 CSRF_COOKIE_SAMESITE = 'Lax'
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+
+EMAIL_BACKEND=config('EMAIL_BACKEND')
+EMAIL_HOST=config('EMAIL_HOST')
+EMAIL_PORT=config('EMAIL_PORT')
+EMAIL_HOST_USER=config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD=config('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS=config('EMAIL_USE_TLS', default=True, cast=bool)
+
+
+FRONTEND_URL = "http://localhost:3000"  # or your real frontend URL
+
+from celery.schedules import crontab
+CELERY_BEAT_SCHEDULE = {
+    'delete_expired_inactive_users_task': {
+        'task': 'accounts.tasks.delete_expired_inactive_users',  # Task you just created
+         'schedule': crontab(minute='*/5'), 
+    },
+}

@@ -7,7 +7,7 @@ from chat.consumers import MyConsumer
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('chat.urls')),
-    path('user/', include('accounts.urls')),
+    path('accounts/', include('accounts.urls')),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),
 ]

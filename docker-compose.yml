@@ -1,0 +1,41 @@
+
+
+services:
+  web:
+    build: .
+    command: uvicorn webchat.asgi:application --host 0.0.0.0 --port 8000 --workers 4 --log-level debug --reload
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+
+  celery:
+    build: .
+    command: celery -A webchat worker --loglevel=info
+    volumes:
+      - .:/app
+    depends_on:
+      - web
+      - redis
+    env_file:
+      - .env
+
+  celery-beat:
+    build: .
+    command: celery -A webchat beat --loglevel=info
+    volumes:
+      - .:/app
+    depends_on:
+      - web
+      - redis
+    environment:
+      - CELERY_BROKER_URL=redis://redis:6379/0

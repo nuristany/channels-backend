@@ -2,7 +2,7 @@ from channels.generic.websocket import JsonWebsocketConsumer
 from asgiref.sync import async_to_sync
 from django.contrib.auth import get_user_model
 from django.conf import settings
-from accounts.serializers import UserAccountSerializers
+from accounts.serializers import CustomeUserCreateSerializer
 import jwt  # If you are using JWT for authentication
 from .models import Conversation, Message, Channel
 
@@ -55,7 +55,7 @@ class MyConsumer(JsonWebsocketConsumer):
         self.accept()
 
         # Send user info to the client
-        user_data = UserAccountSerializers(self.user).data
+        user_data = CustomeUserCreateSerializer(self.user).data
         user_data["type"] = "user_info"
         self.send_json(user_data)
 
@@ -99,7 +99,7 @@ class MyConsumer(JsonWebsocketConsumer):
                 'type': 'chat.message',
                 'new_message': {
                     'id': new_message.id,
-                    'sender': UserAccountSerializers(self.user).data,
+                    'sender': CustomeUserCreateSerializer(self.user).data,
                     'content': new_message.content,
                     'timestamp': new_message.timestamp.isoformat(),
                 }
