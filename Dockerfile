@@ -24,6 +24,7 @@ COPY . .
 # Create static directory
 RUN mkdir -p /app/staticfiles
 
+ENV RUNNING_IN_DOCKER_BUILD=1
 # ✅ Collect static files
 RUN python manage.py collectstatic --noinput
 

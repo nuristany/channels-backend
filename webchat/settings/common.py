@@ -85,9 +85,19 @@ WSGI_APPLICATION = 'webchat.wsgi.application'
 ASGI_APPLICATION = 'webchat.asgi.application'
 
 # Database
+# DATABASES = {
+#     'default': dj_database_url.config(default=config('DATABASE_URL'))
+# }
+
+default_db = (
+    'sqlite:///db.sqlite3' if os.environ.get('RUNNING_IN_DOCKER_BUILD')
+    else config('DATABASE_URL')
+)
+
 DATABASES = {
-    'default': dj_database_url.config(default=config('DATABASE_URL'))
+    'default': dj_database_url.config(default=default_db)
 }
+
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
