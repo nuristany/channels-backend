@@ -1,13 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 
-echo "🏁 ENTRYPOINT STARTED"
+# Wait for DB, migrate, etc. if needed
 
-set -e
-
-echo "📦 Running collectstatic..."
+echo "Collecting static files..."
 python manage.py collectstatic --noinput
 
-echo "🛠 Running migrate..."
-python manage.py migrate
-
+# Start the server
 exec "$@"
