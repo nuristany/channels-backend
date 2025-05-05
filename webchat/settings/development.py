@@ -2,12 +2,11 @@ from .common import *
 from decouple import config
 
 # Secret Key
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = config('SECRET_KEY', default='insecure-dev-key')
 
 # Always True in development
 DEBUG = config('DEBUG', default=True, cast=bool)
 
-# Development-only settings
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '192.168.1.106']
 
 CORS_ALLOWED_ORIGINS = [
@@ -20,7 +19,7 @@ CSRF_TRUSTED_ORIGINS = [
     'http://192.168.1.106:5173',
 ]
 
-# Local SQLite database
+# SQLite for development
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -28,9 +27,9 @@ DATABASES = {
     }
 }
 
-EMAIL_BACKEND=config('EMAIL_BACKEND')
-EMAIL_HOST=config('EMAIL_HOST')
-EMAIL_PORT=config('EMAIL_PORT')
-EMAIL_HOST_USER=config('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD=config('EMAIL_HOST_PASSWORD')
-EMAIL_USE_TLS=config('EMAIL_USE_TLS', default=True, cast=bool)
+EMAIL_BACKEND = config('EMAIL_BACKEND', default='django.core.mail.backends.console.EmailBackend')
+EMAIL_HOST = config('EMAIL_HOST', default='')
+EMAIL_PORT = config('EMAIL_PORT', default=587, cast=int)
+EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
+EMAIL_USE_TLS = config('EMAIL_USE_TLS', default=True, cast=bool)
