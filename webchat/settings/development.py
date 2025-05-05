@@ -7,8 +7,8 @@ SECRET_KEY = config('SECRET_KEY', default='insecure-dev-key')
 # Always True in development
 DEBUG = config('DEBUG', default=True, cast=bool)
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '192.168.1.106']
-
+# ALLOWED_HOSTS = ['localhost', '127.0.0.1', '192.168.1.106']
+ALLOWED_HOSTS = ['*']
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
     'http://192.168.1.106:5173',
