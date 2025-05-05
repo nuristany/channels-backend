@@ -7,6 +7,9 @@ import dj_database_url
 # Base directory
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
+
+SECRET_KEY = config('SECRET_KEY', default='insecure-build-secret')
+
 # Installed apps
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -89,13 +92,12 @@ ASGI_APPLICATION = 'webchat.asgi.application'
 #     'default': dj_database_url.config(default=config('DATABASE_URL'))
 # }
 
-default_db = (
-    'sqlite:///db.sqlite3' if os.environ.get('RUNNING_IN_DOCKER_BUILD')
-    else config('DATABASE_URL')
-)
+
 
 DATABASES = {
-    'default': dj_database_url.config(default=default_db)
+    'default': dj_database_url.config(
+        default='sqlite:///' + str(BASE_DIR / 'db.sqlite3')  # works during build
+    )
 }
 
 
