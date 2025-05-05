@@ -3,8 +3,10 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from chat.consumers import MyConsumer
+from django.http import JsonResponse 
 
 urlpatterns = [
+    path('', lambda request: JsonResponse({'message': 'Welcome to the API'})),
     path('admin/', admin.site.urls),
     path('api/', include('chat.urls')),
     path('accounts/', include('accounts.urls')),
