@@ -1,3 +1,4 @@
+### Dockerfile ###
 FROM python:3.12-slim
 
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -23,7 +24,8 @@ COPY entrypoint.sh /app/entrypoint.sh
 # Make the entrypoint script executable
 RUN chmod +x /app/entrypoint.sh
 
-
+# Collect static files
+RUN python manage.py collectstatic --noinput || echo "collectstatic failed"
 
 ENTRYPOINT ["/app/entrypoint.sh"]
 CMD ["uvicorn", "webchat.asgi:application", "--host", "0.0.0.0", "--port", "8000", "--workers", "4", "--log-level", "debug"]
