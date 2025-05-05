@@ -52,13 +52,13 @@ CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
 ]
 
-ALLOWED_HOSTS = [
-    'channels-backend-production.up.railway.app',
-    'localhost',
-    '127.0.0.1',
-    '192.168.1.106',
-]
-
+# ALLOWED_HOSTS = [
+#     'channels-backend-production.up.railway.app',
+#     'localhost',
+#     '127.0.0.1',
+#     '192.168.1.106',
+# ]
+ALLOWED_HOSTS = ['*']
 ROOT_URLCONF = 'webchat.urls'
 TEMPLATES = [
     {
